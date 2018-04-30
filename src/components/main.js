@@ -3,6 +3,8 @@ import { ButtonToolbar, Button } from 'react-bootstrap';
 import Header from './header';
 import CategoryItems from './list';
 
+import '../style.css';
+
 const baseUrl = 'https://ghibliapi.herokuapp.com/';
 const categories = ['films', 'species', 'vehicles'];
 
@@ -52,19 +54,29 @@ class Main extends Component {
     renderButtonToolbar() {
         return (
             <ButtonToolbar>
-                {categories.map((item, i) => {
-                    return <Button key={i} bsStyle="primary" onClick={this.handleClick.bind(this, item)}>{item.toUpperCase()}</Button>;
-                })}
+                <div className="container">
+                    {categories.map((item, i) => {
+                        return <Button key={i} bsStyle="primary" onClick={this.handleClick.bind(this, item)}>{item.toUpperCase()}</Button>;
+                    })}
+                </div>
             </ButtonToolbar>
         );
     }
 
     render() {
         return (
-            <div className="category-body">
-                <Header title='Studio Ghibli Project' />
+            <div>
+                <div className="header">
+                    <div className="container">
+                        <Header title='Studio Ghibli Project' />
+                    </div>
+                </div>
                 {this.renderButtonToolbar()}
-                <CategoryItems selectedCategory={this.state.selectedCategory} />
+                <div className="container">
+                    <div className="row">
+                        <CategoryItems selectedCategory={this.state.selectedCategory} />
+                    </div>
+                </div>
             </div>
         );
     }
