@@ -7,7 +7,11 @@ import Header from './header';
  */
 describe('<Header />', () => {
     // Make assertion on the expected behavior
+    it('should render without throwing an error', () => {
+        mount(<Header/>);
+    });
+
     it('should render to static HTML', () => {
-        expect(render(<Header />).text()).toEqual('Studio Ghibli Project');
+        expect(render(<Header />).text()).toEqual('Code Project');
     });
 });
