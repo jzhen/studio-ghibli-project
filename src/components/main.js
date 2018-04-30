@@ -62,7 +62,7 @@ class Main extends Component {
     render() {
         return (
             <div className="category-body">
-                <Header />
+                <Header title='Studio Ghibli Project' />
                 {this.renderButtonToolbar()}
                 <CategoryItems selectedCategory={this.state.selectedCategory} />
             </div>
