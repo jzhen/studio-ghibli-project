@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -17,17 +17,32 @@
       "stage-2"
     ]
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js",
+    "transform": {".*": "<rootDir>/node_modules/babel-jest"},
+    "unmockedModulePathPatterns": [
+        "<rootDir>/node_modules/react",
+        "<rootDir>/node_modules/react-dom"
+    ],
+    "verbose": true
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-jest": "^22.4.3",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
+    "jest-enzyme": "^6.0.0",
     "react-hot-loader": "^4.1.2",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
