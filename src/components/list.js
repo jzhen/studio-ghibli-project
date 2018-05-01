@@ -6,8 +6,44 @@ class CategoryItems extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            categoryItems: undefined,
+            filteredList: undefined,
+            filterTerm: ''
         };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedCategory && nextProps.selectedCategory.length) {
+            this.setState({
+                categoryItems: nextProps.selectedCategory,
+                filteredList: nextProps.selectedCategory
+                
+            });
+        }
+    }
+
+    /**
+     * Method to handle filter input change
+     */
+    handleChange(e) {
+        this.setState({filterTerm: e.target.value}, () => {
+            let items = this.state.categoryItems;
+            let filterTerm = this.state.filterTerm;
+            if (filterTerm && filterTerm.length) {
+                let filteredItems = items.filter(item => {
+                    if (item.title) {
+                        return item.title.toLowerCase().indexOf(filterTerm.toLowerCase()) > -1;
+                    } else if (item.name) {
+                        return item.name.toLowerCase().indexOf(filterTerm.toLowerCase()) > -1;
+                    }
+                });
+                this.setState({filteredList: filteredItems});
+            } else {
+                this.setState({filteredList: this.state.categoryItems});
+            }
+        });
     }
 
     /**
@@ -35,10 +71,17 @@ class CategoryItems extends Component {
 
     render() {
         return (
-            <div className="category-item-list">
-                <ListGroup>
-                    {this.renderCategoryList(this.props.selectedCategory)}
-                </ListGroup>
+            <div>
+                <div className="filter-field">
+                    <input type="text" value={this.state.filterTerm} name="filterTerm" id="filterTerm"
+                        placeholder="Filter by title or name" onChange={this.handleChange}
+                        disabled={!this.state.categoryItems} className="form-control" />
+                </div>
+                <div className="category-item-list">
+                    <ListGroup>
+                        {this.renderCategoryList(this.state.filteredList)}
+                    </ListGroup>
+                </div>
             </div>
         );
     }
