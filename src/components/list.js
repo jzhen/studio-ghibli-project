@@ -53,7 +53,14 @@ class CategoryItems extends Component {
      */
     handleClick(item) {
         let favorites  = this.state.favorites;
-        favorites.push(item);
+        if (favorites.length) {
+            let match = favorites.find(favorite => favorite.id === item.id);
+            if (!match) {
+                favorites.push(item);
+            }
+        } else {
+            favorites.push(item);
+        }
         this.setState({ favorites: favorites });
     }
 
