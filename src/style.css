@@ -23,13 +23,32 @@ body {
     margin-right: 1.0rem;
 }
 
-.filter-field,
 .category-item-list {
-    padding-left: 1.0rem;
     padding-right: 1.0rem;
 }
 
 .filter-field {
-    width: 25%;
+    width: 50%;
     margin-bottom: 1.0rem;
+}
+
+.list-group-item p {
+    display: table;
+    width: 100%;
+}
+
+.description {
+    display: table-cell;
+    padding-right: 0.5rem;
+    width: 85%;
+}
+
+.favorite-action {
+    display: table-cell;
+    padding-left: 0.5rem;
+    width: 15%;
+}
+
+.favorite-action .btn {
+    vertical-align: text-top;
 }
